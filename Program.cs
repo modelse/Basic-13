@@ -8,7 +8,9 @@ namespace ConsoleApplication
         public static void PrintAll()
         {
             for (int i = 0; i < 256; i ++){
-                System.Console.WriteLine(i);
+                //No Need to reference System after importing the namespace "System"
+                //System.Console.WriteLine(i);
+                Console.WriteLine(i)
             }
         }
         public static void PrintOdds()
@@ -45,18 +47,21 @@ namespace ConsoleApplication
         }
         public static int FindAverage(int[] arr)
         {
+            //For count we can use the build in arr.Length to access it
             int all=0;
-            int count=0;
+            //int count=0;
             foreach(int item in arr){
                 all+=item;
                 count++;
             }
-            int avg= all/ count;
+            //int avg= all/ count;
+            int avg = all / arr.Length;
              System.Console.WriteLine(avg);
             return avg;
         }
         public static void oddArray()
         {
+            //This is fine to be an int array rather than double
             double[] start = new double[256/2];
             int num = 0;
             for (int i = 1; i <= 255; i+=2){
@@ -87,7 +92,7 @@ namespace ConsoleApplication
             System.Console.WriteLine("Position {0} is now {1}", i, arr[i]);
             }
         }
-        public static void NoNegatives(double[]arr)
+        public static void NoNegatives(int[] arr)
         {
             for (int i = 0; i < arr.Length; i++){
                 if (arr[i] < 0){
@@ -98,11 +103,12 @@ namespace ConsoleApplication
                 System.Console.WriteLine("position {0} is {1}", i, arr[i]);
             }
         }
-         public static void MinMaxAvg(double[]arr)
+         public static void MinMaxAvg(double[] arr)
         {
             double min = arr[0];
             double max = arr[0];
             double sum = 0;
+            // if this is only used once, just invoke it where needed, no need for creating a new variable
             double length = arr.Length;
             for (int i = 0; i < arr.Length; i++){
                 if (min > arr[i]){
@@ -113,7 +119,7 @@ namespace ConsoleApplication
                 }
                 sum += arr[i];
             }
-            double avg=sum/length;
+            double avg = sum / arr.length;
             System.Console.WriteLine($"min is {min}");
             System.Console.WriteLine($"max is {max}");
             System.Console.WriteLine($"avg is {avg}");
@@ -130,8 +136,11 @@ namespace ConsoleApplication
             for (int i = 0; i < arr.Length; i++){
                 System.Console.WriteLine($"Position {i} is {arr[i]}");
             }
-        }   
-        public static void NumToString(double[]arr)
+        }
+        
+        //This method requires to return the new string
+        //public static void NumToString(double[]arr)
+        public static object[] NumToString(double[] arr)
         {
             List<object> result = new List<object>();
             for (int i = 0; i < arr.Length; i++){
@@ -144,6 +153,7 @@ namespace ConsoleApplication
             for (int i = 0; i < arr.Length; i++){   
                 System.Console.WriteLine($"Position {i} is {result[i]}");
             }
+            return result.ToArry();
         } 
         public static void Main(string[] args)
         {
